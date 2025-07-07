@@ -128,7 +128,7 @@
                         <ul class="list-unstyled">
                             <li><strong>Linguagem:</strong> PHP 8.2</li>
                             <li><strong>Framework:</strong> Laravel 10.x</li>
-                            <li><strong>Banco de Dados:</strong> MySQL 8.0</li>
+                            <li><strong>Banco de Dados:</strong> PostgreSQL 15+</li>
                             <li><strong>Cache:</strong> Redis</li>
                             <li><strong>Servidor Web:</strong> Apache/Nginx</li>
                         </ul>
@@ -258,7 +258,350 @@ projeto-sesi/
                 </div>
             </div>
         </section>
+
+        <!-- Design das Telas -->
+        <section id="telas" class="prototype-section">
+            <h2 class="mb-4">Design das Telas (Quasar.Vue)</h2>
+
+            <!-- Login -->
+            <div class="mb-5">
+                <h3 class="mb-3">Tela de Login</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+<!-- Template Vue -->
+<template>
+  <q-page class="flex flex-center">
+    <q-card class="login-card">
+      <q-card-section class="bg-sesi-blue text-white text-center">
+        <img src="logo-sesi.png" alt="SESI-MS" class="q-mb-md" style="height: 60px;">
+        <h5 class="q-mt-none q-mb-none">Sistema de Matrículas</h5>
+      </q-card-section>
+
+      <q-card-section>
+        <q-form @submit="onSubmit" class="q-gutter-md">
+          <q-input
+            v-model="email"
+            type="email"
+            label="E-mail"
+            outlined
+          />
+
+          <q-input
+            v-model="password"
+            type="password"
+            label="Senha"
+            outlined
+          />
+
+          <q-btn
+            label="Entrar"
+            type="submit"
+            color="primary"
+            class="full-width"
+          />
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template></pre>
+                </div>
+            </div>
+
+            <!-- Dashboard -->
+            <div class="mb-5">
+                <h3 class="mb-3">Dashboard</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+<!-- Template Vue -->
+<template>
+  <q-page>
+    <div class="row q-col-gutter-md q-pa-md">
+      <!-- Cards Estatísticos -->
+      <div class="col-12 col-md-3">
+        <q-card class="bg-primary text-white">
+          <q-card-section>
+            <div class="text-h6">Total de Matrículas</div>
+            <div class="text-h4">{{ totalMatriculas }}</div>
+          </q-card-section>
+        </q-card>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <q-card class="bg-secondary text-white">
+          <q-card-section>
+            <div class="text-h6">Matrículas Hoje</div>
+            <div class="text-h4">{{ matriculasHoje }}</div>
+          </q-card-section>
+        </q-card>
+      </div>
+
+      <!-- Gráfico de Matrículas -->
+      <div class="col-12">
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">Evolução de Matrículas</div>
+            <canvas id="matriculasChart"></canvas>
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
+  </q-page>
+</template></pre>
+                </div>
+            </div>
+
+            <!-- Formulário de Matrícula -->
+            <div class="mb-5">
+                <h3 class="mb-3">Formulário de Matrícula</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+<!-- Template Vue -->
+<template>
+  <q-page class="q-pa-md">
+    <q-stepper
+      v-model="step"
+      vertical
+      color="primary"
+      animated
+    >
+      <!-- Dados do Aluno -->
+      <q-step
+        :name="1"
+        title="Dados do Aluno"
+        icon="person"
+        :done="step > 1"
+      >
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-md-6">
+            <q-input
+              v-model="form.nome"
+              label="Nome Completo"
+              outlined
+              :rules="[val => !!val || 'Campo obrigatório']"
+            />
+          </div>
+          <div class="col-12 col-md-6">
+            <q-input
+              v-model="form.cpf"
+              label="CPF"
+              mask="###.###.###-##"
+              outlined
+              :rules="[val => !!val || 'Campo obrigatório']"
+            />
+          </div>
+        </div>
+      </q-step>
+
+      <!-- Dados Escolares -->
+      <q-step
+        :name="2"
+        title="Dados Escolares"
+        icon="school"
+        :done="step > 2"
+      >
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-md-6">
+            <q-select
+              v-model="form.serie"
+              :options="series"
+              label="Série"
+              outlined
+            />
+          </div>
+          <div class="col-12 col-md-6">
+            <q-select
+              v-model="form.turno"
+              :options="turnos"
+              label="Turno"
+              outlined
+            />
+          </div>
+        </div>
+      </q-step>
+
+      <!-- Documentos -->
+      <q-step
+        :name="3"
+        title="Documentos"
+        icon="attach_file"
+      >
+        <q-uploader
+          url="api/upload"
+          label="Upload de Documentos"
+          multiple
+          accept=".pdf,.jpg,.png"
+          color="primary"
+        />
+      </q-step>
+    </q-stepper>
+
+    <!-- Botões de Navegação -->
+    <div class="row justify-end q-mt-md">
+      <q-btn
+        v-if="step > 1"
+        flat
+        color="primary"
+        label="Voltar"
+        @click="step--"
+        class="q-mr-sm"
+      />
+      <q-btn
+        color="primary"
+        :label="step === 3 ? 'Finalizar' : 'Próximo'"
+        @click="step === 3 ? submitForm() : step++"
+      />
+    </div>
+  </q-page>
+</template></pre>
+                </div>
+            </div>
+
+            <!-- Lista de Matrículas -->
+            <div class="mb-5">
+                <h3 class="mb-3">Lista de Matrículas</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+<!-- Template Vue -->
+<template>
+  <q-page class="q-pa-md">
+    <q-table
+      :rows="matriculas"
+      :columns="columns"
+      row-key="id"
+      :loading="loading"
+    >
+      <!-- Barra de Pesquisa -->
+      <template v-slot:top>
+        <q-input
+          v-model="search"
+          placeholder="Pesquisar"
+          dense
+          outlined
+          class="q-mb-md"
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+
+      <!-- Ações -->
+      <template v-slot:body-cell-actions="props">
+        <q-td :props="props">
+          <q-btn-group flat>
+            <q-btn
+              color="primary"
+              icon="visibility"
+              @click="viewMatricula(props.row)"
+            />
+            <q-btn
+              color="secondary"
+              icon="edit"
+              @click="editMatricula(props.row)"
+            />
+          </q-btn-group>
+        </q-td>
+      </template>
+    </q-table>
+  </q-page>
+</template></pre>
+                </div>
+            </div>
+
+            <!-- Componentes Compartilhados -->
+            <div class="mb-5">
+                <h3 class="mb-3">Componentes Compartilhados</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+<!-- Header Component -->
+<template>
+  <q-header elevated class="bg-sesi-blue text-white">
+    <q-toolbar>
+      <q-btn
+        flat
+        dense
+        round
+        icon="menu"
+        @click="toggleLeftDrawer"
+      />
+
+      <q-toolbar-title>
+        SESI-MS - Sistema de Matrículas
+      </q-toolbar-title>
+
+      <q-btn-dropdown flat icon="person">
+        <q-list>
+          <q-item clickable v-close-popup @click="logout">
+            <q-item-section>
+              <q-item-label>Sair</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-btn-dropdown>
+    </q-toolbar>
+  </q-header>
+</template></pre>
+                </div>
+            </div>
+
+            <!-- Estilos Globais -->
+            <div class="mb-5">
+                <h3 class="mb-3">Estilos Globais (SCSS)</h3>
+                <div class="component-preview p-4 bg-light">
+                    <pre class="mb-4">
+// src/css/app.scss
+:root {
+  --sesi-blue: #004A90;
+  --sesi-red: #E31837;
+}
+
+.text-sesi-blue {
+  color: var(--sesi-blue);
+}
+
+.bg-sesi-blue {
+  background: var(--sesi-blue);
+}
+
+.text-sesi-red {
+  color: var(--sesi-red);
+}
+
+.bg-sesi-red {
+  background: var(--sesi-red);
+}
+
+// Cards personalizados
+.dashboard-card {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+}
+
+// Formulários
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Animações
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}</pre>
+                </div>
+            </div>
+        </section>
 
     <!-- Footer -->
     <footer class="bg-sesi-blue text-white py-4 mt-5">
