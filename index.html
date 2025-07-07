@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo - Sistema de Matrículas SESI-MS</title>
+    <title>Documentação - Sistema de Matrículas SESI-MS</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -46,17 +46,27 @@
             border-radius: 0.5rem;
         }
 
-        .wireframe-box {
+        .tech-stack {
             background: #f8f9fa;
-            border: 2px solid #dee2e6;
             padding: 1rem;
+            border-radius: 0.5rem;
             margin-bottom: 1rem;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #6c757d;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+
+        code {
+            color: var(--sesi-blue);
         }
     </style>
 </head>
@@ -64,23 +74,23 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-sesi-blue navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Protótipo SESI-MS</a>
+            <a class="navbar-brand" href="#">Sistema de Matrículas SESI-MS</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Menu de navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#cores">Cores</a>
+                        <a class="nav-link" href="#stack">Stack Técnica</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tipografia">Tipografia</a>
+                        <a class="nav-link" href="#frontend">Frontend</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#componentes">Componentes</a>
+                        <a class="nav-link" href="#backend">Backend</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#wireframes">Wireframes</a>
+                        <a class="nav-link" href="#design">Design System</a>
                     </li>
                 </ul>
             </div>
@@ -92,69 +102,138 @@
         <div class="row mb-5">
             <div class="col-12 text-center">
                 <h1 class="text-sesi-blue mb-4">Sistema de Matrículas SESI-MS</h1>
-                <p class="lead">Protótipo e Design do Sistema</p>
+                <p class="lead">Documentação Técnica e Design System</p>
             </div>
         </div>
 
-        <!-- Paleta de Cores -->
-        <section id="cores" class="prototype-section">
-            <h2 class="mb-4">Paleta de Cores</h2>
-            <div class="row">
-                <div class="col-md-3 text-center">
-                    <div class="color-box bg-sesi-blue">
-                        Azul SESI<br>#004A90
-                    </div>
-                    <p>Cor Principal</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="color-box bg-sesi-red">
-                        Vermelho SESI<br>#E31837
-                    </div>
-                    <p>Cor Secundária</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="color-box bg-white border">
-                        <span class="text-dark">Branco<br>#FFFFFF</span>
-                    </div>
-                    <p>Background</p>
-                </div>
-                <div class="col-md-3 text-center">
-                    <div class="color-box bg-dark">
-                        Preto<br>#1D1D1B
-                    </div>
-                    <p>Texto</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tipografia -->
-        <section id="tipografia" class="prototype-section">
-            <h2 class="mb-4">Tipografia</h2>
+        <!-- Stack Técnica -->
+        <section id="stack" class="prototype-section">
+            <h2 class="mb-4">Stack Técnica</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <h1>Título Principal (32px)</h1>
-                    <h2>Subtítulo (24px)</h2>
-                    <h3>Título Seção (20px)</h3>
-                    <p class="lead">Texto Destaque (18px)</p>
-                    <p>Texto Regular (16px)</p>
-                    <small>Texto Pequeno (14px)</small>
+                    <div class="tech-stack">
+                        <h3><i class="fas fa-laptop-code tech-icon"></i> Frontend</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Framework Principal:</strong> Quasar.Vue v2.x</li>
+                            <li><strong>JavaScript Framework:</strong> Vue.js 3</li>
+                            <li><strong>Gerenciamento de Estado:</strong> Vuex</li>
+                            <li><strong>Roteamento:</strong> Vue Router</li>
+                            <li><strong>HTTP Client:</strong> Axios</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="component-preview">
-                        <p><strong>Font-family:</strong> Roboto, sans-serif</p>
-                        <p><strong>Pesos:</strong> Regular (400), Medium (500), Bold (700)</p>
+                    <div class="tech-stack">
+                        <h3><i class="fas fa-server tech-icon"></i> Backend</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Linguagem:</strong> PHP 8.2</li>
+                            <li><strong>Framework:</strong> Laravel 10.x</li>
+                            <li><strong>Banco de Dados:</strong> MySQL 8.0</li>
+                            <li><strong>Cache:</strong> Redis</li>
+                            <li><strong>Servidor Web:</strong> Apache/Nginx</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Componentes -->
-        <section id="componentes" class="prototype-section">
-            <h2 class="mb-4">Componentes</h2>
+        <!-- Estrutura do Projeto -->
+        <section id="estrutura" class="prototype-section">
+            <h2 class="mb-4">Estrutura do Projeto</h2>
+            <pre>
+projeto-sesi/
+├── frontend/                  # Aplicação Quasar
+│   ├── src/
+│   │   ├── pages/            # Páginas principais
+│   │   ├── components/       # Componentes Vue
+│   │   ├── layouts/          # Layouts da aplicação
+│   │   ├── boot/             # Inicialização
+│   │   ├── css/             # Estilos globais
+│   │   └── store/           # Gerenciamento de estado
+│   └── quasar.config.js
+│
+├── backend/                   # API Laravel
+│   ├── app/
+│   │   ├── Http/
+│   │   │   ├── Controllers/  # Controllers da API
+│   │   │   └── Middleware/   # Middlewares
+│   │   ├── Models/           # Modelos do banco
+│   │   └── Services/         # Serviços
+│   ├── database/
+│   └── routes/</pre>
+        </section>
+
+        <!-- Frontend Details -->
+        <section id="frontend" class="prototype-section">
+            <h2 class="mb-4">Frontend (Quasar.Vue)</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Componentes Principais</h4>
+                    <ul>
+                        <li>MatriculaForm</li>
+                        <li>DocumentUpload</li>
+                        <li>DashboardStats</li>
+                        <li>SharedComponents</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Bibliotecas</h4>
+                    <ul>
+                        <li>VueliDate - Validações</li>
+                        <li>Chart.js - Gráficos</li>
+                        <li>PDF.js - Visualização de documentos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backend Details -->
+        <section id="backend" class="prototype-section">
+            <h2 class="mb-4">Backend (Laravel)</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>APIs Principais</h4>
+                    <pre>
+/api/v1/matriculas
+/api/v1/alunos
+/api/v1/documentos
+/api/v1/dashboard</pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>Integrações</h4>
+                    <ul>
+                        <li>TOTVS SGE</li>
+                        <li>Power BI</li>
+                        <li>Sistema de Arquivos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design System -->
+        <section id="design" class="prototype-section">
+            <h2 class="mb-4">Design System</h2>
             
-            <!-- Botões -->
+            <!-- Cores -->
             <div class="mb-5">
-                <h3 class="mb-3">Botões</h3>
+                <h3 class="mb-3">Cores Institucionais</h3>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <div class="color-box bg-sesi-blue">
+                            Azul SESI<br>#004A90
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="color-box bg-sesi-red">
+                            Vermelho SESI<br>#E31837
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Componentes -->
+            <div class="mb-5">
+                <h3 class="mb-3">Componentes UI</h3>
                 <div class="component-preview">
                     <button class="btn btn-danger me-2">Botão Primário</button>
                     <button class="btn btn-primary me-2">Botão Secundário</button>
@@ -162,23 +241,7 @@
                 </div>
             </div>
 
-            <!-- Cards -->
-            <div class="mb-5">
-                <h3 class="mb-3">Cards</h3>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Nova Matrícula</h5>
-                                <p class="card-text">Inicie o processo de matrícula para novos alunos.</p>
-                                <button class="btn btn-danger">Começar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Formulários -->
+            <!-- Forms -->
             <div class="mb-5">
                 <h3 class="mb-3">Formulários</h3>
                 <div class="component-preview">
@@ -195,51 +258,12 @@
                 </div>
             </div>
         </section>
-
-        <!-- Wireframes -->
-        <section id="wireframes" class="prototype-section">
-            <h2 class="mb-4">Wireframes</h2>
-            
-            <!-- Header -->
-            <div class="wireframe-box">
-                Header - Logo e Menu de Navegação
-            </div>
-
-            <!-- Banner -->
-            <div class="wireframe-box" style="height: 300px;">
-                Banner Principal - Chamada para Matrícula
-            </div>
-
-            <!-- Cards -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="wireframe-box">
-                        Card - Nova Matrícula
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="wireframe-box">
-                        Card - Rematrícula
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="wireframe-box">
-                        Card - Documentos
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form -->
-            <div class="wireframe-box mt-4">
-                Área de Formulário
-            </div>
-        </section>
     </div>
 
     <!-- Footer -->
     <footer class="bg-sesi-blue text-white py-4 mt-5">
         <div class="container text-center">
-            <p>Protótipo desenvolvido para SESI-MS</p>
+            <p>Sistema de Matrículas - SESI-MS</p>
         </div>
     </footer>
 
