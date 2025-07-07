@@ -266,339 +266,231 @@ projeto-sesi/
             <!-- Login -->
             <div class="mb-5">
                 <h3 class="mb-3">Tela de Login</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-<!-- Template Vue -->
-<template>
-  <q-page class="flex flex-center">
-    <q-card class="login-card">
-      <q-card-section class="bg-sesi-blue text-white text-center">
-        <img src="logo-sesi.png" alt="SESI-MS" class="q-mb-md" style="height: 60px;">
-        <h5 class="q-mt-none q-mb-none">Sistema de Matrículas</h5>
-      </q-card-section>
-
-      <q-card-section>
-        <q-form @submit="onSubmit" class="q-gutter-md">
-          <q-input
-            v-model="email"
-            type="email"
-            label="E-mail"
-            outlined
-          />
-
-          <q-input
-            v-model="password"
-            type="password"
-            label="Senha"
-            outlined
-          />
-
-          <q-btn
-            label="Entrar"
-            type="submit"
-            color="primary"
-            class="full-width"
-          />
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </q-page>
-</template></pre>
+                <div class="bg-light p-5 rounded-3 d-flex justify-content-center">
+                    <div class="card" style="width: 400px;">
+                        <div class="card-header bg-sesi-blue text-white text-center py-4">
+                            <img src="https://www.sesims.com.br/portal/assets/img/logo-sesi-branco.png" alt="SESI-MS" style="height: 60px;" class="mb-3">
+                            <h5 class="mb-0">Sistema de Matrículas</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="seu@email.com">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Senha</label>
+                                    <input type="password" class="form-control" placeholder="••••••••">
+                                </div>
+                                <button class="btn btn-danger w-100">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Dashboard -->
             <div class="mb-5">
                 <h3 class="mb-3">Dashboard</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-<!-- Template Vue -->
-<template>
-  <q-page>
-    <div class="row q-col-gutter-md q-pa-md">
-      <!-- Cards Estatísticos -->
-      <div class="col-12 col-md-3">
-        <q-card class="bg-primary text-white">
-          <q-card-section>
-            <div class="text-h6">Total de Matrículas</div>
-            <div class="text-h4">{{ totalMatriculas }}</div>
-          </q-card-section>
-        </q-card>
-      </div>
-
-      <div class="col-12 col-md-3">
-        <q-card class="bg-secondary text-white">
-          <q-card-section>
-            <div class="text-h6">Matrículas Hoje</div>
-            <div class="text-h4">{{ matriculasHoje }}</div>
-          </q-card-section>
-        </q-card>
-      </div>
-
-      <!-- Gráfico de Matrículas -->
-      <div class="col-12">
-        <q-card>
-          <q-card-section>
-            <div class="text-h6">Evolução de Matrículas</div>
-            <canvas id="matriculasChart"></canvas>
-          </q-card-section>
-        </q-card>
-      </div>
-    </div>
-  </q-page>
-</template></pre>
+                <div class="bg-light p-4 rounded-3">
+                    <div class="row g-4">
+                        <!-- Cards Estatísticos -->
+                        <div class="col-md-3">
+                            <div class="card bg-sesi-blue text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Total de Matrículas</h6>
+                                    <h2 class="card-title mb-0">1,234</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-sesi-red text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Matrículas Hoje</h6>
+                                    <h2 class="card-title mb-0">47</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Vagas Disponíveis</h6>
+                                    <h2 class="card-title mb-0">283</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2">Documentos Pendentes</h6>
+                                    <h2 class="card-title mb-0">15</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Gráfico -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evolução de Matrículas</h5>
+                                    <div style="height: 300px; background: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                        [Gráfico de Evolução]
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Formulário de Matrícula -->
             <div class="mb-5">
                 <h3 class="mb-3">Formulário de Matrícula</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-<!-- Template Vue -->
-<template>
-  <q-page class="q-pa-md">
-    <q-stepper
-      v-model="step"
-      vertical
-      color="primary"
-      animated
-    >
-      <!-- Dados do Aluno -->
-      <q-step
-        :name="1"
-        title="Dados do Aluno"
-        icon="person"
-        :done="step > 1"
-      >
-        <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6">
-            <q-input
-              v-model="form.nome"
-              label="Nome Completo"
-              outlined
-              :rules="[val => !!val || 'Campo obrigatório']"
-            />
-          </div>
-          <div class="col-12 col-md-6">
-            <q-input
-              v-model="form.cpf"
-              label="CPF"
-              mask="###.###.###-##"
-              outlined
-              :rules="[val => !!val || 'Campo obrigatório']"
-            />
-          </div>
-        </div>
-      </q-step>
-
-      <!-- Dados Escolares -->
-      <q-step
-        :name="2"
-        title="Dados Escolares"
-        icon="school"
-        :done="step > 2"
-      >
-        <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6">
-            <q-select
-              v-model="form.serie"
-              :options="series"
-              label="Série"
-              outlined
-            />
-          </div>
-          <div class="col-12 col-md-6">
-            <q-select
-              v-model="form.turno"
-              :options="turnos"
-              label="Turno"
-              outlined
-            />
-          </div>
-        </div>
-      </q-step>
-
-      <!-- Documentos -->
-      <q-step
-        :name="3"
-        title="Documentos"
-        icon="attach_file"
-      >
-        <q-uploader
-          url="api/upload"
-          label="Upload de Documentos"
-          multiple
-          accept=".pdf,.jpg,.png"
-          color="primary"
-        />
-      </q-step>
-    </q-stepper>
-
-    <!-- Botões de Navegação -->
-    <div class="row justify-end q-mt-md">
-      <q-btn
-        v-if="step > 1"
-        flat
-        color="primary"
-        label="Voltar"
-        @click="step--"
-        class="q-mr-sm"
-      />
-      <q-btn
-        color="primary"
-        :label="step === 3 ? 'Finalizar' : 'Próximo'"
-        @click="step === 3 ? submitForm() : step++"
-      />
-    </div>
-  </q-page>
-</template></pre>
+                <div class="bg-light p-4 rounded-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Stepper -->
+                            <div class="d-flex mb-4">
+                                <div class="flex-grow-1 text-center">
+                                    <div class="rounded-circle bg-sesi-blue text-white d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">1</div>
+                                    <div>Dados do Aluno</div>
+                                </div>
+                                <div class="flex-grow-1 text-center">
+                                    <div class="rounded-circle bg-secondary text-white d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">2</div>
+                                    <div>Dados Escolares</div>
+                                </div>
+                                <div class="flex-grow-1 text-center">
+                                    <div class="rounded-circle bg-secondary text-white d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">3</div>
+                                    <div>Documentos</div>
+                                </div>
+                            </div>
+                            <!-- Formulário -->
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-control" placeholder="Nome do aluno">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">CPF</label>
+                                        <input type="text" class="form-control" placeholder="000.000.000-00">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data de Nascimento</label>
+                                        <input type="date" class="form-control" title="Data de nascimento do aluno">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" placeholder="(00) 00000-0000">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button class="btn btn-danger">Próximo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Lista de Matrículas -->
             <div class="mb-5">
                 <h3 class="mb-3">Lista de Matrículas</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-<!-- Template Vue -->
-<template>
-  <q-page class="q-pa-md">
-    <q-table
-      :rows="matriculas"
-      :columns="columns"
-      row-key="id"
-      :loading="loading"
-    >
-      <!-- Barra de Pesquisa -->
-      <template v-slot:top>
-        <q-input
-          v-model="search"
-          placeholder="Pesquisar"
-          dense
-          outlined
-          class="q-mb-md"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
-
-      <!-- Ações -->
-      <template v-slot:body-cell-actions="props">
-        <q-td :props="props">
-          <q-btn-group flat>
-            <q-btn
-              color="primary"
-              icon="visibility"
-              @click="viewMatricula(props.row)"
-            />
-            <q-btn
-              color="secondary"
-              icon="edit"
-              @click="editMatricula(props.row)"
-            />
-          </q-btn-group>
-        </q-td>
-      </template>
-    </q-table>
-  </q-page>
-</template></pre>
+                <div class="bg-light p-4 rounded-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Busca -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                        <input type="text" class="form-control" placeholder="Pesquisar matrículas...">
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-danger"><i class="fas fa-plus"></i> Nova Matrícula</button>
+                                </div>
+                            </div>
+                            <!-- Tabela -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Aluno</th>
+                                            <th>Série</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>MAT001</td>
+                                            <td>João Silva</td>
+                                            <td>1º Ano</td>
+                                            <td><span class="badge bg-success">Ativa</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" title="Visualizar matrícula"><i class="fas fa-eye"></i> Ver</button>
+                                                <button class="btn btn-sm btn-secondary" title="Editar matrícula"><i class="fas fa-edit"></i> Editar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>MAT002</td>
+                                            <td>Maria Santos</td>
+                                            <td>2º Ano</td>
+                                            <td><span class="badge bg-warning">Pendente</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" title="Visualizar matrícula"><i class="fas fa-eye"></i> Ver</button>
+                                                <button class="btn btn-sm btn-secondary" title="Editar matrícula"><i class="fas fa-edit"></i> Editar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Paginação -->
+                            <nav class="d-flex justify-content-center mt-4">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Componentes Compartilhados -->
+            <!-- Menu Lateral -->
             <div class="mb-5">
-                <h3 class="mb-3">Componentes Compartilhados</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-<!-- Header Component -->
-<template>
-  <q-header elevated class="bg-sesi-blue text-white">
-    <q-toolbar>
-      <q-btn
-        flat
-        dense
-        round
-        icon="menu"
-        @click="toggleLeftDrawer"
-      />
-
-      <q-toolbar-title>
-        SESI-MS - Sistema de Matrículas
-      </q-toolbar-title>
-
-      <q-btn-dropdown flat icon="person">
-        <q-list>
-          <q-item clickable v-close-popup @click="logout">
-            <q-item-section>
-              <q-item-label>Sair</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
-    </q-toolbar>
-  </q-header>
-</template></pre>
-                </div>
-            </div>
-
-            <!-- Estilos Globais -->
-            <div class="mb-5">
-                <h3 class="mb-3">Estilos Globais (SCSS)</h3>
-                <div class="component-preview p-4 bg-light">
-                    <pre class="mb-4">
-// src/css/app.scss
-:root {
-  --sesi-blue: #004A90;
-  --sesi-red: #E31837;
-}
-
-.text-sesi-blue {
-  color: var(--sesi-blue);
-}
-
-.bg-sesi-blue {
-  background: var(--sesi-blue);
-}
-
-.text-sesi-red {
-  color: var(--sesi-red);
-}
-
-.bg-sesi-red {
-  background: var(--sesi-red);
-}
-
-// Cards personalizados
-.dashboard-card {
-  border-radius: 10px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-}
-
-// Formulários
-.form-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-// Animações
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}</pre>
+                <h3 class="mb-3">Menu Lateral</h3>
+                <div class="bg-light p-4 rounded-3">
+                    <div style="width: 280px;" class="bg-sesi-blue text-white p-3 rounded">
+                        <div class="text-center mb-4">
+                            <img src="https://www.sesims.com.br/portal/assets/img/logo-sesi-branco.png" alt="SESI-MS" style="height: 50px;">
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action bg-transparent text-white border-light">
+                                <i class="fas fa-home me-2"></i> Dashboard
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action bg-transparent text-white border-light">
+                                <i class="fas fa-user-graduate me-2"></i> Matrículas
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action bg-transparent text-white border-light">
+                                <i class="fas fa-book me-2"></i> Turmas
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action bg-transparent text-white border-light">
+                                <i class="fas fa-file-alt me-2"></i> Documentos
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action bg-transparent text-white border-light">
+                                <i class="fas fa-cog me-2"></i> Configurações
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
